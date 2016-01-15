@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+# This wrapper script runs all the scripts in this directory to generate the 1/16th
+# degree forcings for the SWM in the ACF basin
+
+
+set -e  # stop on errors
+set -x  # echo each execution
+
+# 1. Calculation of the mean value of meteorological variable (Precip, Tmax, Tmin) from 
+#    VIC daily forcing file. Forcing files used here have data for the period 1949-2005
+#    Means are calculated over the period 1960-1999.
+./calc_met_means.US.scr
+
+# 2. Total Precip for each month over the period 1960-99 has been sorted in ascending order, for each cell
+./make_mon_clim.PCP.pl
+
+# 3. This step aggregates the daily values of Precip, T max and T min and make three FMT files.
+#    Daily values aggregated are over the period 1915-05 (check date)
+./make_fmt.pl
+
+# 4. This step wraps two scrips of Mu's (no documentation on either) to calculate the climate means for each station
+#    - clim_mon.py: Calculate the montly climatology
+#    - stn_dly_2_mon.py: Calculate the monthly timeseries for each station
+./calc_climate.scr
+
+# 5. At this step monthly Precip time series is taken as input and then again a fmt file is 
+#    generated which has monthly precip quantiles for all stations relative to monthly
+#    climatologies.
+./mk.stn_qnt_fmt.pl
+
+# 6. This step is done to regrid monthly precip quantiles at desired resolution (1/16th deg).
+#    1/16th deg DEM file is used as input. 
+./regrid.p-monqnt.scr
+
+# 7. ?
+./grd_qnts_2_vals.pl
+
+# 8. ?
+./regrid.p-dlyamt.scr
+
+# 9. This step extracts p, tmax and tmin averages for a set of stations timeseries in the row order given
+#     in a typical Station info file (which matches the .fmt file col order).
+./get.ndx_stn_avgs.scr
+
+
+# 10. This step calculates T max and T min anomalies from given precalculated means.
+./stn_vals_2_anoms.pl
+
+# 11. Tmax and Tmin anomalies were regridded at 1/16th deg resolution.
+./regrid.dly_T_anoms.scr
+
+# 12. At this step Tmax and Tmin anomalies is trasnformed to the actual values.
+./anoms_2_vals.pl
+
+# 13. This step generates forcing files for all the cell for the period 1915-05. Each of the forcing file
+#     generated have four fields. (Daily Precip, Tmax, Tmin and Avg Wind speed)
+./grds_2_tser.pl

@@ -1,0 +1,64 @@
+#!/bin/csh
+# regrid daily station temp anomalies to 5 basins
+# AWW-052604 - reduced station list by one - made new list
+# Shrad 17/02/2007 edited for Wash
+# NOTE: info files don't change except when station lists are altered -----
+
+set INFO = /raid2/jhamman/projects/ACF/data/input/CONUS.stns.info 
+
+#------------------------------------------------------
+
+goto START
+# ------------ argument info for $FARGS (regrid argument) file-----
+ tpswitch (p: do not lapse data by altitude, t: lapse data by altitude)
+   DO NOT SWITCH BECAUSE WE DO NOT WANT TO LAPSE IN REGRIDDING HERE
+ number of nearest neighbours, max neighbors to use
+ infofile
+ maskfile
+ inputfile
+ outputfile
+ stop for no data (0 no, 1 yes)
+ output format (0 ascii, 1 4-byte binary float, 2 2-byte integer, 3 netCDF)
+ data multiplier -- used with 2-byte (signed) integer format
+ plimit (mm) in this version, resets p above this; set to BIG# to not use
+# ------------------------------------------------------------------
+START:
+set REGRID = ./regrid/regrid
+set DEM =  ./input/acf.dem.txt
+set FARGS = regrid.runfile
+
+
+# tmax, but do not lapse ----------
+echo "'p'" > $FARGS
+echo '5 100' >> $FARGS
+echo "'$INFO'" >> $FARGS 
+echo "'$DEM'" >> $FARGS
+
+# Can use same input file for all basins
+echo "'/raid2/jhamman/projects/ACF/data/output/acf.ndx_stns.tnanom.fmt'" >> $FARGS
+# output is basin specific
+echo "'/raid2/jhamman/projects/ACF/data/output/acf.tnanom.grd'" >> $FARGS
+echo '1' >> $FARGS
+echo '0' >> $FARGS
+echo '1' >> $FARGS
+echo '9000' >> $FARGS
+
+cat $FARGS
+$REGRID
+
+# tmin, but do not lapse ----------
+echo "'p'" > $FARGS
+echo '5 100' >> $FARGS
+echo "'$INFO'" >> $FARGS 
+echo "'$DEM'" >> $FARGS
+# Can use same input file for all basins
+echo "'/raid2/jhamman/projects/ACF/data/output/acf.ndx_stns.txanom.fmt'" >> $FARGS
+echo "'/raid2/jhamman/projects/ACF/data/output/acf.txanom.grd'" >> $FARGS
+echo '1' >> $FARGS
+echo '0' >> $FARGS
+echo '1' >> $FARGS
+echo '9000' >> $FARGS
+
+cat $FARGS
+$REGRID
+

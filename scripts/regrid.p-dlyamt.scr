@@ -1,0 +1,48 @@
+#!/bin/csh
+# regrid the monthly station precip quantiles to the 5 basins vic 1/16th deg grid 
+#AWW-052604 - reduced station list by one - made new list
+# Shrad-021307 edited for WA 1/16th deg grid 
+# NOTE: info files don't change except when station lists are altered -----
+#set INFO = /stn_info/CONUS.stns.info
+
+set INFO = /raid2/jhamman/projects/ACF/data/input/CONUS.stns.info 
+
+goto START
+# ------------ argument info for $FARGS (regrid argument) file-----
+ tpswitch (p: do not lapse data by altitude; t: lapse data by altitude)
+   DO NOT SWITCH BECAUSE WE DO NOT WANT TO LAPSE IN REGRIDDING HERE
+ number of nearest neighbours, max neighbors to use
+ infofile
+ maskfile
+ inputfile
+ outputfile
+ stop for no data (0 no, 1 yes)
+ output format (0 ascii, 1 4-byte binary float, 2 2-byte integer, 3 netCDF)
+ data multiplier -- used with 2-byte (signed) integer format
+ plimit (mm) in this version, resets p above this; set to BIG# to not use
+# ------------------------------------------------------------------
+START:
+set BASEDIR=/raid2/jhamman/projects/ACF/scripts 
+#set RES = "0625"
+set REGRID=$BASEDIR/regrid/regrid
+set DEM=./input/acf.dem.txt
+set FARGS=$BASEDIR/regrid.runfile
+
+# precip ----------
+echo "'p'" > $FARGS
+echo '5 100' >> $FARGS    # this is the min and max nearby stations used
+echo "'$INFO'" >> $FARGS 
+echo "'$DEM'" >> $FARGS
+
+# Can use same input file for all basins
+echo "'/raid2/jhamman/projects/ACF/data/output/acf.ndx_stns.p.fmt'" >> $FARGS
+# output is basin specific
+echo "'/raid2/jhamman/projects/ACF/data/output/acf.0625.p-dlyamt.grd'" >> $FARGS
+echo '1' >> $FARGS
+echo '0' >> $FARGS
+echo '1' >> $FARGS
+echo '300' >> $FARGS
+cat $FARGS
+$REGRID
+#\rm regrid.runfile
+

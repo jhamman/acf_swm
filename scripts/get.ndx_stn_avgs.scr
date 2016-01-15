@@ -1,0 +1,65 @@
+#!/bin/csh
+# extract p, tmax and tmin averages for a set of stations timeseries in the 
+# row order given in a typical .info file (which matches the .fmt file col order)
+# Shrad Edited for Wash Stations 16/02/2007
+# column numbers = row numbers-1 in .info files for pcp, tmax and tmin
+# AWW-100703
+
+set STNLIST = /raid2/jhamman/projects/ACF/data/input/CONUS.stns.info 
+set DAT = /raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data
+
+set SYR = 1961
+set EYR = 2010
+set OUTAVGS = "/raid2/jhamman/projects/ACF/data/output/acf.ndx_stns.p-tx-tn.$SYR-$EYR.dlyavgs"
+
+# Nsta is  2133 for CONUS
+# Nsta is 5301 or 4994 for MEXICO
+# Nsta is 10 for Canada
+# Nsta id 196 for Wash (includes stations in WA, OR, ID)
+
+set Nsta = `head -1 $STNLIST | awk '{print $1 + 2}'`
+
+echo -n >! $OUTAVGS
+set N = 2
+while ($N < $Nsta) # 5301 stations after 1 line header
+  set ID = `awk '{if(NR=='$N'){print $4;exit}}' $STNLIST `
+  
+  set ID = ` echo "$ID" | tr -d "'"`
+
+  echo $N $ID
+  awk '{ \
+    if($1>='$SYR' && $1<='$EYR'){ \
+      if($4!=-99) { \
+        p+=$4 \
+        pcnt++ \
+      } \
+      if($5!=-99) { \
+        tx+=$5 \
+        txcnt++ \
+      } \
+      if($6!=-99) { \
+        tn+=$6 \
+        tncnt++ \
+      } \
+    } \
+  } END { \
+    if(pcnt==0) { \
+      pavg = -99  \
+    } else {     \
+      pavg = p/pcnt \
+    } \
+    if(txcnt==0) { \
+      txavg = -99  \
+    } else {     \
+      txavg = tx/txcnt \
+    }  \
+    if(tncnt==0) { \
+      tnavg = -99  \
+    } else {     \
+      tnavg = tn/tncnt \
+    }  \
+    print "'$ID'", pavg, txavg, tnavg \
+  }' $DAT/${ID} >> $OUTAVGS
+  @ N ++
+end
+
