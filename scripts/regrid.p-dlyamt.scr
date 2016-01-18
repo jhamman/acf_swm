@@ -5,7 +5,7 @@
 # NOTE: info files don't change except when station lists are altered -----
 #set INFO = /stn_info/CONUS.stns.info
 
-set INFO = /raid2/jhamman/projects/ACF/data/input/CONUS.stns.info 
+set INFO = /raid2/jhamman/projects/ACF/data/input/acf.stns.info 
 
 goto START
 # ------------ argument info for $FARGS (regrid argument) file-----
@@ -25,7 +25,7 @@ START:
 set BASEDIR=/raid2/jhamman/projects/ACF/scripts 
 #set RES = "0625"
 set REGRID=$BASEDIR/regrid/regrid
-set DEM=./input/acf.dem.txt
+set DEM=/raid2/jhamman/projects/ACF/data/input/acf.dem.txt
 set FARGS=$BASEDIR/regrid.runfile
 
 # precip ----------

@@ -6,7 +6,9 @@
 mkdir -p ../data/output/mon.aciscan
 mkdir -p ../data/output/Pavg
 
-stations=( $(awk '{ print $4 }' /raid2/jhamman/projects/ACF/data/input/CONUS.stns.info))
+
+scripts=$PWD
+stations=( $(awk '{ print $4 }' /raid2/jhamman/projects/ACF/data/input/acf.stns.info))
 
 for st in ${stations[@]}
 do
@@ -14,9 +16,17 @@ do
   ./stn_dly_2_mon.py /raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data/${st} ../data/output/mon.aciscan/${st}
 done
 
+for f in ../data/output/mon.aciscan/*
+do
+  echo $f
+  sed -i '1153,$ d' $f
+  sed -i '1,60 d' $f
+done
+
+cd ../data/output/Pavg
 for st in ${stations[@]}
 do
   echo "station - ${st}"
-./clim_mon.py ../data/output/mon.aciscan/${st} ../data/output/Pavg/${st}
+$scripts/clim_mon.py ../mon.aciscan/${st} ${st}
 done
-      
+cd - 

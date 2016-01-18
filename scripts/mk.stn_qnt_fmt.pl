@@ -7,7 +7,7 @@
 
 # --------------- settings -------------------------
 
-$StnList = "/raid2/jhamman/projects/ACF/data/input/CONUS.stns.info";
+$StnList = "/raid2/jhamman/projects/ACF/data/input/acf.stns.info";
 $BASEDIR = "/raid2/jhamman/projects/ACF/data/output";
 # wash
 # retro TS

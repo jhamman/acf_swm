@@ -15,7 +15,7 @@
 # ------- settings ---------------
 $DATDIR = "/raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data/";
 $OUTDIR = "/raid2/jhamman/projects/ACF/data/output/";
-$StnList = "/raid2/jhamman/projects/ACF/data/input/CONUS.stns.info";
+$StnList = "/raid2/jhamman/projects/ACF/data/input/acf.stns.info";
 
 $chunk = 250;
 

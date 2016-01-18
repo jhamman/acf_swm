@@ -4,7 +4,7 @@
 # Shrad 17/02/2007 edited for Wash
 # NOTE: info files don't change except when station lists are altered -----
 
-set INFO = /raid2/jhamman/projects/ACF/data/input/CONUS.stns.info 
+set INFO = /raid2/jhamman/projects/ACF/data/input/acf.stns.info 
 
 #------------------------------------------------------
 
@@ -24,7 +24,7 @@ goto START
 # ------------------------------------------------------------------
 START:
 set REGRID = ./regrid/regrid
-set DEM =  ./input/acf.dem.txt
+set DEM = /raid2/jhamman/projects/ACF/data/input/acf.dem.txt 
 set FARGS = regrid.runfile
 
 

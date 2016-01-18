@@ -5,7 +5,7 @@
 # column numbers = row numbers-1 in .info files for pcp, tmax and tmin
 # AWW-100703
 
-set STNLIST = /raid2/jhamman/projects/ACF/data/input/CONUS.stns.info 
+set STNLIST = /raid2/jhamman/projects/ACF/data/input/acf.stns.info 
 set DAT = /raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data
 
 set SYR = 1961
