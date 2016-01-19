@@ -13,9 +13,9 @@
 # WARNING, must have fewer stations than maximum filehandles
 
 # ------- settings ---------------
-$DATDIR = "/raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data/";
-$OUTDIR = "/raid2/jhamman/projects/ACF/data/output/";
-$StnList = "/raid2/jhamman/projects/ACF/data/input/acf.stns.info";
+$DATDIR = $ENV{'swm_stn_dir'};
+$OUTDIR = $ENV{'swm_output_dir'};
+$StnList = $ENV{'swm_stations'};
 
 $chunk = 250;
 
@@ -26,7 +26,7 @@ $DEBUG = 1;
 
 # open output files
 
-$prefix = 'acf';
+$prefix = $ENV{'swm_prefix'};
 
 $OutPcp = $OUTDIR . $prefix . ".ndx_stns.p.fmt";
 $OutTx  = $OUTDIR . $prefix . ".ndx_stns.tx.fmt";

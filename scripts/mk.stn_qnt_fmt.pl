@@ -7,15 +7,15 @@
 
 # --------------- settings -------------------------
 
-$StnList = "/raid2/jhamman/projects/ACF/data/input/acf.stns.info";
-$BASEDIR = "/raid2/jhamman/projects/ACF/data/output";
+$StnList = $ENV{'swm_stations'};
+$BASEDIR = $ENV{'swm_output_dir'};
 # wash
 # retro TS
 $TSDIR = "$BASEDIR/mon.aciscan/";
 # current spinup TS 
 #$TSDIR = $BASEDIR . "/forc/rt_data/currmon/";
 $CLIMDIR = "$BASEDIR/Pavg/";
-$OutFl = "$BASEDIR/acf.ndx_stns.p-monqnt.fmt"; 
+$OutFl = "$BASEDIR" . $ENV{'swm_prefix'} . ".ndx_stns.p-monqnt.fmt"; 
 $Debug = 0;
 
 

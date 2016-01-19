@@ -9,14 +9,14 @@ use Date::Calc qw(Delta_Days Days_in_Month);
 #  --- settings ------------------------
 # grid files
 
-$DPATH = "/raid/blivneh/forcings/outputs/NLDAS/asc/";
+$DPATH = $ENV{'swm_ref_dir'};
 
-$Listf = "/raid2/jhamman/projects/ACF/data/input/acf.file.list";
+$Listf = $ENV{'swm_file_list'};
 
 ($Syr, $Smo, $Sdy) = (1950,1,1);    # start record of gridded forcing data
 ($OutSyr, $OutEyr) = (1961, 2010);  # should match those used for distributions
                        #   of station files (../stn_info/lt_tser/Pavg)
-$Stnoutf = "/raid2/jhamman/projects/ACF/data/output/acf.$OutSyr-$OutEyr.mon_clim.ptot"; #p mon-totals distrib. file
+$Stnoutf = $ENV{'swm_output_dir'} . $ENV{'swm_prefix'} . ".$OutSyr-$OutEyr.mon_clim.ptot"; #p mon-totals distrib. file
 
 # forcing data input details ----------
  $Pscale = 100;  # scalar for how precip is packed in binary forcing files

@@ -25,12 +25,12 @@ $Chunk = 365;
 
   # set basin specific files
   
-  $basedir = "/raid2/jhamman/projects/ACF/data/output";
-  $avgs   = "$basedir/acf.1961-2010.met_means.xyzz"; 
-  $p_rsc  = "$basedir/acf.0625.p-dlyamt.grd";
-  $tx_grd = "$basedir/acf.tx.grd";
-  $tn_grd = "$basedir/acf.tn.grd";
-  $forcdir = "/raid2/jhamman/projects/ACF/data/forcings/acf_swm/"; 
+  $basedir = $ENV{'swm_output_dir'};
+  $avgs   = "$basedir" . $ENV{'swm_prefix'} . ".1961-2010.met_means.xyzz"; 
+  $p_rsc  = "$basedir" . $ENV{'swm_prefix'} . ".0625.p-dlyamt.grd";
+  $tx_grd = "$basedir" . $ENV{'swm_prefix'} . ".tx.grd";
+  $tn_grd = "$basedir" . $ENV{'swm_prefix'} . ".tn.grd";
+  $forcdir = $ENV{'swm_output_dir'}; 
 
   # open files
   open(AVGS, "<$avgs") or die "Can't open $avgs: $!\n";

@@ -8,9 +8,9 @@
 # just use in T anomaly calculations for index-stn method forcings
 
 #*************** WA 0.0625 retro ***********************
-set OUTF = /raid2/jhamman/projects/ACF/data/output/acf.1961-2010.met_means.xyzz
-set FILE_LIST = /raid2/jhamman/projects/ACF/data/input/acf.file.list
-set FORCING_PATH = /raid/blivneh/forcings/outputs/NLDAS/asc/
+set OUTF = ${swm_output_dir}${swm_prefix}.1961-2010.met_means.xyzz
+set FILE_LIST = ${swm_file_list}
+set FORCING_PATH = ${swm_force_dir}
 set NREC = 23376 # from 1950,01,01 to 2013,12,31
 set SREC = 4019 # start,end records for averaging (1961,1,1)
 set EREC = 21915 # figure out ahead of time, it's quicker (2010,12,31)

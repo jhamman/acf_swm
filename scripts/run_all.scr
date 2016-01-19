@@ -11,6 +11,20 @@
 
 set -e  # stop on errors
 set -x  # echo each execution
+set -a  # export all variables
+
+config=$1
+if [ -z "$config" ]; then
+    echo "config file is required"
+    exit 1
+fi
+if [ ! -f $config ]; then
+    echo "File not found!"
+    exit 1
+fi
+
+source $config
+swm_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 # 1. Calculation of the mean value of meteorological variable (Precip, Tmax, Tmin) from 
 #    VIC daily forcing file. Forcing files used here have data for the period 1949-2005
@@ -68,7 +82,6 @@ set -x  # echo each execution
 #    Output: acf.ndx_stns.p-tx-tn.1961-2010.dlyavgs (rows=number of stations, cols=four met vars)
 ./get.ndx_stn_avgs.scr
 
-
 # 10. This step calculates T max and T min anomalies from given precalculated means.
 #
 #    Output: acf.ndx_stns.txanom.fmt (rows=number of days in forcings, cols=number of stations)
@@ -92,3 +105,7 @@ set -x  # echo each execution
 #
 #    Output: VIC forcings (e.g. data_30.65625_-84.46875, cols=forcing vars, rows=number of days in forcings)
 ./grds_2_tser.pl
+
+set +a  # stop exporting all variables
+
+exit 0

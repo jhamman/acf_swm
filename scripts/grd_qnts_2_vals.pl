@@ -25,9 +25,9 @@ $smo = 1;   # start month for mon quantiles
   
   # set basin specific files
   
-  $Fmondist = "/raid2/jhamman/projects/ACF/data/output/acf.1961-2010.mon_clim.ptot"; # didn't follow name convention
-  $Fmonqnt = "/raid2/jhamman/projects/ACF/data/output/acf.0625.p-monqnt.grd"; # input
-  $Fmonamt = "/raid2/jhamman/projects/ACF/data/output/acf.0625.p-monamt.grd"; # output
+  $Fmondist = $ENV{'swm_output_dir'} . $ENV{'swm_prefix'} .  ".1961-2010.mon_clim.ptot"; # didn't follow name convention
+  $Fmonqnt = $ENV{'swm_output_dir'} . $ENV{'swm_prefix'} . ".0625.p-monqnt.grd"; # input
+  $Fmonamt = $ENV{'swm_output_dir'} . $ENV{'swm_prefix'} . ".0625.p-monamt.grd"; # output
 
 
 

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+# simple utilitiy to print the shape of ascii files
+
+rows=$(wc -l $1)
+cols=$(awk -F' ' '{print NF; exit}' $1)
+
+echo "rows: ${rows}"
+echo "cols: ${cols}"
+

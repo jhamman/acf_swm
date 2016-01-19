@@ -4,7 +4,7 @@
 # Shrad 17/02/2007 edited for Wash
 # NOTE: info files don't change except when station lists are altered -----
 
-set INFO = /raid2/jhamman/projects/ACF/data/input/acf.stns.info 
+set INFO = ${swm_stations} 
 
 #------------------------------------------------------
 
@@ -24,8 +24,8 @@ goto START
 # ------------------------------------------------------------------
 START:
 set REGRID = ./regrid/regrid
-set DEM = /raid2/jhamman/projects/ACF/data/input/acf.dem.txt 
-set FARGS = regrid.runfile
+set DEM = ${swm_dem} 
+set FARGS = ./regrid.runfile
 
 
 # tmax, but do not lapse ----------
@@ -35,9 +35,9 @@ echo "'$INFO'" >> $FARGS
 echo "'$DEM'" >> $FARGS
 
 # Can use same input file for all basins
-echo "'/raid2/jhamman/projects/ACF/data/output/acf.ndx_stns.tnanom.fmt'" >> $FARGS
+echo "'${swm_output_dir}/${swm_prefix}.ndx_stns.tnanom.fmt'" >> $FARGS
 # output is basin specific
-echo "'/raid2/jhamman/projects/ACF/data/output/acf.tnanom.grd'" >> $FARGS
+echo "'${swm_output_dir}/${swm_prefix}.tnanom.grd'" >> $FARGS
 echo '1' >> $FARGS
 echo '0' >> $FARGS
 echo '1' >> $FARGS
@@ -45,6 +45,8 @@ echo '9000' >> $FARGS
 
 cat $FARGS
 $REGRID
+cp regrid.runfile ${swm_output_dir}/regrid.dly_Tn_anoms.runfile.txt
+rm regrid.runfile
 
 # tmin, but do not lapse ----------
 echo "'p'" > $FARGS
@@ -52,8 +54,8 @@ echo '5 100' >> $FARGS
 echo "'$INFO'" >> $FARGS 
 echo "'$DEM'" >> $FARGS
 # Can use same input file for all basins
-echo "'/raid2/jhamman/projects/ACF/data/output/acf.ndx_stns.txanom.fmt'" >> $FARGS
-echo "'/raid2/jhamman/projects/ACF/data/output/acf.txanom.grd'" >> $FARGS
+echo "'${swm_output_dir}/${swm_prefix}.ndx_stns.txanom.fmt'" >> $FARGS
+echo "'${swm_output_dir}/${swm_prefix}.txanom.grd'" >> $FARGS
 echo '1' >> $FARGS
 echo '0' >> $FARGS
 echo '1' >> $FARGS
@@ -61,4 +63,7 @@ echo '9000' >> $FARGS
 
 cat $FARGS
 $REGRID
+cp regrid.runfile ${swm_output_dir}/regrid.dly_Tx_anoms.runfile.txt
+rm regrid.runfile
 
+exit 0

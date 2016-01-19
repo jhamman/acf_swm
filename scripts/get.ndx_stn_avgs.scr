@@ -5,12 +5,12 @@
 # column numbers = row numbers-1 in .info files for pcp, tmax and tmin
 # AWW-100703
 
-set STNLIST = /raid2/jhamman/projects/ACF/data/input/acf.stns.info 
-set DAT = /raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data
+set STNLIST = ${swm_stations} 
+set DAT = ${swm_stn_dir} 
 
 set SYR = 1961
 set EYR = 2010
-set OUTAVGS = "/raid2/jhamman/projects/ACF/data/output/acf.ndx_stns.p-tx-tn.$SYR-$EYR.dlyavgs"
+set OUTAVGS = "${swm_output_dir}/${swm_prefix}.ndx_stns.p-tx-tn.$SYR-$EYR.dlyavgs"
 
 # Nsta is  2133 for CONUS
 # Nsta is 5301 or 4994 for MEXICO
@@ -63,3 +63,4 @@ while ($N < $Nsta) # 5301 stations after 1 line header
   @ N ++
 end
 
+exit 0

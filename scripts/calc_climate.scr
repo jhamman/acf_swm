@@ -3,30 +3,34 @@
 # This script calculate the climate data needed for mk.stn_qnt_fmt.pl
 # JH - 2015-12-21
 
-mkdir -p ../data/output/mon.aciscan
-mkdir -p ../data/output/Pavg
+set -e  # stop on errors
+set -x  # echo each execution
 
+mkdir -p ${swm_output_dir}/mon.aciscan
+mkdir -p ${swm_output_dir}/Pavg
 
-scripts=$PWD
-stations=( $(awk '{ print $4 }' /raid2/jhamman/projects/ACF/data/input/acf.stns.info))
+scripts=$swm_script_dir
+stations=( $(awk '{ print $4 }' ${swm_stations}))
 
 for st in ${stations[@]}
 do
   echo "station - ${st}"
-  ./stn_dly_2_mon.py /raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data/${st} ../data/output/mon.aciscan/${st}
+  $scripts/stn_dly_2_mon.py ${swm_stn_dir}/${st} ${swm_output_dir}/mon.aciscan/${st}
 done
 
-for f in ../data/output/mon.aciscan/*
+for f in ${swm_output_dir}/mon.aciscan/*
 do
   echo $f
   sed -i '1153,$ d' $f
   sed -i '1,60 d' $f
 done
 
-cd ../data/output/Pavg
+cd ${swm_output_dir}/Pavg
 for st in ${stations[@]}
 do
   echo "station - ${st}"
-$scripts/clim_mon.py ../mon.aciscan/${st} ${st}
+  $scripts/clim_mon.py ${swm_output_dir}/mon.aciscan/${st} ${st}
 done
-cd - 
+cd -
+
+exit 0 

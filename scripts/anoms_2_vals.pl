@@ -20,12 +20,12 @@ $TOTRECS = 33238;  # set days in forcing period
 $Chunk = 365;
 
 $Void = -99;
-$basedir = "/raid2/jhamman/projects/ACF/data/output";
-$tx_anom = "$basedir/acf.txanom.grd";
-$tn_anom = "$basedir/acf.tnanom.grd";
-$avgs = "$basedir/acf.1961-2010.met_means.xyzz";
-$tx_grd = "$basedir/acf.tx.grd";
-$tn_grd = "$basedir/acf.tn.grd";
+$basedir = "$ENV{'swm_output_dir'}";
+$tx_anom = "$basedir" . $ENV{'swm_prefix'} . ".txanom.grd";
+$tn_anom = "$basedir" . $ENV{'swm_prefix'} . ".tnanom.grd";
+$avgs = "$basedir" . $ENV{'swm_prefix'} . ".1961-2010.met_means.xyzz";
+$tx_grd = "$basedir" . $ENV{'swm_prefix'} . ".tx.grd";
+$tn_grd = "$basedir" . $ENV{'swm_prefix'} . ".tn.grd";
 
   # open files
   open(TXANOM, "<$tx_anom") or die "Can't open $tx_anom: $!\n";

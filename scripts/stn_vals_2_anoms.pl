@@ -22,13 +22,13 @@ $Chunk = 500;  # number of records to process at once, in fmt files
 
 
   # set basin specific files
-$basedir = "/raid2/jhamman/projects/ACF/data/output";
-$avgs = "$basedir/acf.ndx_stns.p-tx-tn.1961-2010.dlyavgs";
+$basedir = $ENV{'swm_output_dir'};
+$avgs = "$basedir" . $ENV{'swm_prefix'} . ".ndx_stns.p-tx-tn.1961-2010.dlyavgs";
 print "AVGS file is $avgs\n";
-$tx_fmt = "$basedir/acf.ndx_stns.tx.fmt";
-$tn_fmt = "$basedir/acf.ndx_stns.tn.fmt";
-$tx_anom = "$basedir/acf.ndx_stns.txanom.fmt";
-$tn_anom = "$basedir/acf.ndx_stns.tnanom.fmt";
+$tx_fmt = "$basedir" . $ENV{'swm_prefix'} . ".ndx_stns.tx.fmt";
+$tn_fmt = "$basedir" . $ENV{'swm_prefix'} . ".ndx_stns.tn.fmt";
+$tx_anom = "$basedir" . $ENV{'swm_prefix'} . ".ndx_stns.txanom.fmt";
+$tn_anom = "$basedir" . $ENV{'swm_prefix'} . ".ndx_stns.tnanom.fmt";
 
   # open files
   open(TXFMT, "<$tx_fmt") or die "Can't open $tx_fmt: $!\n";
