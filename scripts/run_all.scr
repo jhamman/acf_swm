@@ -39,7 +39,7 @@ swm_script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 ./make_mon_clim.PCP.pl
 
 # 3. This step aggregates the daily values of Precip, T max and T min and make three FMT files.
-#    Daily values aggregated are over the period 1915-05 (check date)
+#    Daily values aggregated are over the period 1920-10 (check date)
 #
 #    Output: 33238 acf.ndx_stns.p.fmt
 #            33238 acf.ndx_stns.tn.fmt
