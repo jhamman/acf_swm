@@ -5,7 +5,7 @@ swm_prefix='acf'
 # input files
 swm_dem=/raid2/jhamman/projects/ACF/data/input/acf.dem.txt
 swm_file_list=/raid2/jhamman/projects/ACF/data/input/acf.file.list
-swm_stations=/raid2/jhamman/projects/ACF/data/input/acf.stns.info_subset
+swm_stations=/raid2/jhamman/projects/ACF/data/input/acf.stns.info
 
 # regrid exe
 regrid_exe=/raid2/jhamman/projects/ACF/scripts/regrid/regrid
@@ -13,10 +13,10 @@ regrid_exe=/raid2/jhamman/projects/ACF/scripts/regrid/regrid
 # input data directories
 swm_ref_dir=/raid/blivneh/forcings/outputs/NLDAS/asc/
 swm_stn_dir=/raid8/forecast/sw_monitor/data/conus/forcing/acis/lt_data/
-
+swm_stn_dir_mu=/raid3/muxiao/projects/ACF/data/stns/
 # output directories
 swm_output_dir=/raid2/jhamman/projects/ACF/data/output/
-swm_force_dir=/raid2/jhamman/projects/ACF/data/forcings/acf_swm
+swm_force_dir=/raid2/jhamman/projects/ACF/data/forcings/acf_swm/
 
 # sizes and dims
 swm_clim_ref_idate="1915-01-01"

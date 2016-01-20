@@ -30,7 +30,7 @@ $Chunk = 365;
   $p_rsc  = "$basedir" . $ENV{'swm_prefix'} . ".0625.p-dlyamt.grd";
   $tx_grd = "$basedir" . $ENV{'swm_prefix'} . ".tx.grd";
   $tn_grd = "$basedir" . $ENV{'swm_prefix'} . ".tn.grd";
-  $forcdir = $ENV{'swm_output_dir'}; 
+  $forcdir = $ENV{'swm_force_dir'};
 
   # open files
   open(AVGS, "<$avgs") or die "Can't open $avgs: $!\n";

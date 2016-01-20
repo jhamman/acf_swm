@@ -13,7 +13,7 @@
 # WARNING, must have fewer stations than maximum filehandles
 
 # ------- settings ---------------
-$DATDIR = $ENV{'swm_stn_dir'};
+$DATDIR = $ENV{'swm_stn_dir_mu'};
 $OUTDIR = $ENV{'swm_output_dir'};
 $StnList = $ENV{'swm_stations'};
 
