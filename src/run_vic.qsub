@@ -6,4 +6,5 @@
 #$ -q default.q@compute-0-0.local
 #$ -m be
 
-/raid2/jhamman/projects/ACF/src/VIC.4.2.c/src/vicNl -g /raid2/jhamman/projects/ACF/data/vic_params/global.param.4.1.2.g.flux.template.acf_swm
+/raid2/jhamman/projects/ACF/src/VIC.4.2.c/src/vicNl -g /raid2/jhamman/projects/ACF/data/vic_params/global.param.4.1.2.g.flux.template.acf_swm_mu
+
