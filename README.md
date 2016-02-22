@@ -1,7 +1,7 @@
 ACF SWM
 =====
 
-This source code repository includes the tools, scripts, source code, and input datasets required to run the 1/16 SWM over the Apalachicola-Chattahoochee-Flint (ACF) River Basin. This work was conducted on behalf of the State of Florida, Department of Environmental Protection (“FDEP”), in connection with State of Florida v. State of Georgia, in the Supreme Court of the United States, Original Action No. 142. This repository and the 1/16th-deg SWM was developed by Joseph Hamman, PE conjunction with the Dennis Lettenmaier's export hydroclimatology report.
+This source code repository includes the tools, scripts, source code, and input datasets required to run the 1/16 SWM over the Apalachicola-Chattahoochee-Flint (ACF) River Basin. This work was conducted on behalf of the State of Florida, Department of Environmental Protection (“FDEP”), in connection with State of Florida v. State of Georgia, in the Supreme Court of the United States, Original Action No. 142. This repository and the 1/16th-deg SWM was developed by Joseph Hamman, PE in conjunction with the Dennis Lettenmaier's export hydroclimatology report.
 
 ## Overview
 
